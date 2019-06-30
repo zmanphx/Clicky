@@ -12,14 +12,14 @@ class App extends Component {
     count: 0,
     TopCount: 0,
     played: [],
-    Message: "Card previously Click"
+    Message: ""
   };
 
 
     UpdateTopCount =()=> {
      let newcount =this.state.count > this.state.TopCount?  this.state.count:  this.state.TopCount;
       this.setState({TopCount: newcount});
-
+      this.setState({Message:  ""});
     };
 
   RecordClick = name => {
@@ -29,7 +29,7 @@ class App extends Component {
         CardArray = [];
         this.setState({played: []});
         this.setState({count: 0});
-     
+        this.setState({Message:  "Card previously Clicked!! - Score Reset"})
       // reset
     } else {
       CardArray.push(name);
@@ -63,9 +63,9 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Title>Clicky Game</Title>
+        <Title>Clicky Game <h4>React Demo</h4></Title>
         <ScoreBoard>
-          {this.state.count} {this.state.TopCount}
+          {this.state.count} {this.state.TopCount}{this.state.Message}
         </ScoreBoard>
         {this.state.cards.map(card => (
           <PlayCard
